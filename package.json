@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "Verifica los links de archivos markdown y reporta si estan operativos ",
   "main": "index.js",
+  "bin": { "md-links": "lib/index.js"},
+  "engines": {"node": "*"},
   "directories": {
     "test": "test"
   },
