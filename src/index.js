@@ -1,22 +1,20 @@
-/* export function suma(a,b){
-  return a+b;
- }
- */
 const fs = require('fs');
 const path = require('path');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
-
+const mdlinks = {
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
-export function takingThePath(pt){
+takingThePath: (pt)=>{
   if(path.isAbsolute(pt) == true){
     return pt ;
   }else if(path.isAbsolute(pt) == false){
     pt = path.resolve(pt);
     return pt;
   }
-}
+},
 //Verificando si es un archivo o directorio
-export function verifyPath(pt){
+verifyPath: (pt)=>{
   let objectStats = fs.statSync(pt);
   if( objectStats.isFile() == true){
     return console.log( "es un archivo" );
@@ -25,9 +23,9 @@ export function verifyPath(pt){
   }else{
     return console.log("no es un archivo leíble")
   }
-}
+},
 //Verificando si es un archivo markdown
-  export function isItMarkdown(pt){
+isItMarkdown: (pt)=>{
     let objectStats = fs.statSync(pt);
     const mdExpression = /.md$/gm ;
     if(mdExpression.test(pt) == true){
@@ -42,7 +40,7 @@ export function verifyPath(pt){
     fs.readFile(pt, (err, data) )
     if(err){throw err};
     console.log(data);
-  }*/
+  }
 //Leyendo directorios y buscando archivos
   export function readingDirectories(pt){
     fs.readdir(pt,(err, files));
@@ -54,7 +52,7 @@ export function verifyPath(pt){
         console.log(file)})
     }
 
-  }
+  }*/
 
 /*  export function takingThePath(ruta){
    console.log(path.isAbsolute(ruta), ruta )
@@ -68,3 +66,4 @@ export function verifyPath(pt){
        }
     })
  } */
+}
