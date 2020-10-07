@@ -1,27 +1,31 @@
+import { error } from 'console';
+import { ENOENT } from 'constants';
+
 const fs = require('fs');
 const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const marked = require("marked");
+const html = marked('# Marked in Node.js\n\nRendered by **marked**.');
 
-const mdlinks = {
+export const mdlinks = {
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
 takingThePath: (pt)=>{
   if(path.isAbsolute(pt) == true){
     return pt ;
   }else if(path.isAbsolute(pt) == false){
-    pt = path.resolve(pt);
-    return pt;
+    let ruta1 = path.resolve(pt);
+    return ruta1 ;
   }
 },
 //Verificando si es un archivo o directorio
 verifyPath: (pt)=>{
-  let objectStats = fs.statSync(pt);
-  if( objectStats.isFile() == true){
-    return console.log( "es un archivo" );
-  }else if(objectStats.isDirectory() == true){
-    return console.log(" es un directorio")
-  }else{
-    return console.log("no es un archivo leíble")
+  if(fs.statSync(pt) == ENOENT ){
+    return "no es un archivo leible";
+  }else if( fs.statSync(pt).isFile() == true){
+    return "es un archivo";
+  }else if(fs.statSync(pt).isDirectory() == true){
+    return "es un directorio";
   }
 },
 //Verificando si es un archivo markdown
@@ -29,30 +33,40 @@ isItMarkdown: (pt)=>{
     let objectStats = fs.statSync(pt);
     const mdExpression = /.md$/gm ;
     if(mdExpression.test(pt) == true){
-        return console.log("Es un archivo md");
+        return "es un archivo md";
     }
     else{
-      return console.log(pt, "No es un archivo md");
+      return "no es un archivo md";
     }
-  }
+  },
 //Leer archivos markdown
- /* export function readingMdFile(pt){
-    fs.readFile(pt, (err, data) )
-    if(err){throw err};
-    console.log(data);
-  }
-//Leyendo directorios y buscando archivos
-  export function readingDirectories(pt){
-    fs.readdir(pt,(err, files));
+ readingMdFile: (pt) => {
+    fs.readFile(pt, "utf-8", (err, data) =>{
     if(err){
-      console.log(err);
-    }else{
-      console.log(pt); 
-      files.forEach(file => { 
-        console.log(file)})
-    }
+      return error;
+    } else{
+      let html1 = marked(data);
+      const dom = new JSDOM(html1, {
+        href: "example.org" ,
+        text: "example" ,
+        file: pt ,
 
-  }*/
+      });
+      return dom.window.document.querySelector("a").href, dom.window.document.querySelector("a").textContent;
+    }
+  })
+},
+//Leyendo directorios y buscando archivos
+readingDirectories: (pt) => {
+    fs.readdir(pt,(err, files) =>{
+    if(err){
+      console.log(error);
+    }else{
+      console.log(files); 
+  }
+})
+}
+}
 
 /*  export function takingThePath(ruta){
    console.log(path.isAbsolute(ruta), ruta )
@@ -66,4 +80,3 @@ isItMarkdown: (pt)=>{
        }
     })
  } */
-}
