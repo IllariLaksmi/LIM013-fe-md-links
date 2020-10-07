@@ -1,4 +1,5 @@
 import { error } from 'console';
+import { ENOENT } from 'constants';
 import {mdlinks} from '../src/index.js'
 const path = require('path');
 /* const mdlinks = require('../');  */
@@ -33,7 +34,7 @@ describe('verifyPath', () => {
   })
   it('should tell if it is not a readable file', () => {
     const weirdRoute ="www.google.com";
-    expect( mdlinks.verifyPath(weirdRoute)).toThrow(error);
+    expect( mdlinks.verifyPath(weirdRoute)).toThrow(ENOENT);
   })
 });
 //Test de verificación si es un archivo markdown
