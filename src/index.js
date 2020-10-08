@@ -1,12 +1,13 @@
 import { error } from 'console';
 import { ENOENT } from 'constants';
+const { program } = require('commander');
+program.version('0.0.1');
 
 const fs = require('fs');
 const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const marked = require("marked");
-const html = marked('# Marked in Node.js\n\nRendered by **marked**.');
 
 export const mdlinks = {
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
@@ -30,7 +31,6 @@ verifyPath: (pt)=>{
 },
 //Verificando si es un archivo markdown
 isItMarkdown: (pt)=>{
-    let objectStats = fs.statSync(pt);
     const mdExpression = /.md$/gm ;
     if(mdExpression.test(pt) == true){
         return "es un archivo md";
@@ -41,18 +41,16 @@ isItMarkdown: (pt)=>{
   },
 //Leer archivos markdown
  readingMdFile: (pt) => {
-    fs.readFile(pt, "utf-8", (err, data) =>{
+    fs.readFileSync(pt, "utf-8", (err, data) =>{
     if(err){
       return error;
     } else{
       let html1 = marked(data);
-      const dom = new JSDOM(html1, {
-        href: "example.org" ,
-        text: "example" ,
-        file: pt ,
-
-      });
-      return dom.window.document.querySelector("a").href, dom.window.document.querySelector("a").textContent;
+      const dom = new JSDOM(html1);
+      let links = dom.window.document.querySelectorAll('a');
+      let arrayDeUrls = Array.from(links)
+                        .map(element => "href: "+element.href + " name: " + element.textContent + " path: "+ pt);
+      return arrayDeUrls;
     }
   })
 },
@@ -60,7 +58,7 @@ isItMarkdown: (pt)=>{
 readingDirectories: (pt) => {
     fs.readdir(pt,(err, files) =>{
     if(err){
-      console.log(error);
+      return error;
     }else{
       console.log(files); 
   }

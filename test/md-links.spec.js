@@ -58,7 +58,10 @@ describe('readingMdFile', () => {
   });
   it('should return href, textContent and file', () => {
     const route = "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md";
-    const result = "https://nodeca.github.io/pica/demo/ pica C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md";
+    const result = [
+      'https://nodeca.github.io/pica/demo/ pica C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md',
+      'https://github.com/nodeca/babelfish/ babelfish C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md'
+    ];
     expect( mdlinks.readingMdFile(route)).toBe(result);
   });
 });

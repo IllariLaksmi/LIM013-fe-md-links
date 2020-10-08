@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.7% </span>
+                <span class="strong">63.89% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/33</span>
+                <span class='fraction'>23/36</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.7% </span>
+                <span class="strong">63.89% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/33</span>
+                <span class='fraction'>23/36</span>
             </div>
         
             
@@ -137,12 +137,11 @@
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L81'></a><a href='#L81'>81</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -173,7 +172,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -188,11 +186,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,13 +219,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { error } from 'console';
 import { ENOENT } from 'constants';
+const { program } = require('commander');
+program.version('0.0.1');
 &nbsp;
 const fs = require('fs');
 const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const marked = require("marked");
-const html = marked('# Marked in Node.js\n\nRendered by **marked**.');
 &nbsp;
 export const mdlinks = {
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
@@ -253,7 +250,6 @@ verifyPath: (pt)=&gt;{
 },
 //Verificando si es un archivo markdown
 isItMarkdown: (pt)=&gt;{
-    let objectStats = fs.statSync(pt);
     const mdExpression = /.md$/gm ;
     if(mdExpression.test(pt) == true){
         return "es un archivo md";
@@ -264,18 +260,16 @@ isItMarkdown: (pt)=&gt;{
   },
 //Leer archivos markdown
  readingMdFile: (pt) =&gt; {
-    fs.readFile(pt, "utf-8", <span class="fstat-no" title="function not covered" >(e</span>rr, data) =&gt;{
+    fs.readFileSync(pt, "utf-8", <span class="fstat-no" title="function not covered" >(e</span>rr, data) =&gt;{
 <span class="cstat-no" title="statement not covered" >    if(err){</span>
 <span class="cstat-no" title="statement not covered" >      return error;</span>
     } else{
       let html1 = <span class="cstat-no" title="statement not covered" >marked(data);</span>
-      const dom = <span class="cstat-no" title="statement not covered" >new JSDOM(html1, {</span>
-        href: "example.org" ,
-        text: "example" ,
-        file: pt ,
-&nbsp;
-      });
-<span class="cstat-no" title="statement not covered" >      return dom.window.document.querySelector("a").href, dom.window.document.querySelector("a").textContent;</span>
+      const dom = <span class="cstat-no" title="statement not covered" >new JSDOM(html1);</span>
+      let links = <span class="cstat-no" title="statement not covered" >dom.window.document.querySelectorAll('a');</span>
+      let arrayDeUrls = <span class="cstat-no" title="statement not covered" >Array.from(links)</span>
+                        .map(<span class="fstat-no" title="function not covered" >el</span>ement =&gt; <span class="cstat-no" title="statement not covered" >"href: "+element.href + " name: " + element.textContent + " path: "+ pt)</span>;
+<span class="cstat-no" title="statement not covered" >      return arrayDeUrls;</span>
     }
   })
 },
@@ -310,7 +304,7 @@ readingDirectories: <span class="fstat-no" title="function not covered" >(p</spa
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Oct 06 2020 21:25:11 GMT-0500 (GMT-05:00)
+                at Wed Oct 07 2020 17:51:36 GMT-0500 (GMT-05:00)
             </div>
         </div>
         <script src="prettify.js"></script>
