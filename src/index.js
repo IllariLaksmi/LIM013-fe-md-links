@@ -8,6 +8,7 @@ const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const marked = require("marked");
+let arrayDeArchivos = {}
 
 export const mdlinks = {
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
@@ -21,27 +22,25 @@ takingThePath: (pt)=>{
 },
 //Verificando si es un archivo o directorio
 verifyPath: (pt)=>{
-  if(fs.statSync(pt) == ENOENT ){
-    return "no es un archivo leible";
-  }else if( fs.statSync(pt).isFile() == true){
-    return "es un archivo";
+  if( fs.statSync(pt).isFile() == true){
+    return "file";
   }else if(fs.statSync(pt).isDirectory() == true){
-    return "es un directorio";
+    return "directory";
   }
 },
 //Verificando si es un archivo markdown
 isItMarkdown: (pt)=>{
     const mdExpression = /.md$/gm ;
     if(mdExpression.test(pt) == true){
-        return "es un archivo md";
+        return true;
     }
     else{
-      return "no es un archivo md";
+      return false ;
     }
   },
 //Leer archivos markdown
  readingMdFile: (pt) => {
-    fs.readFileSync(pt, "utf-8", (err, data) =>{
+    fs.readFile(pt, "utf-8", (err, data) =>{
     if(err){
       return error;
     } else{
@@ -50,22 +49,26 @@ isItMarkdown: (pt)=>{
       let links = dom.window.document.querySelectorAll('a');
       let arrayDeUrls = Array.from(links)
                         .map(element => "href: "+element.href + " name: " + element.textContent + " path: "+ pt);
-      return arrayDeUrls;
+      console.log(arrayDeUrls);
     }
   })
 },
 //Leyendo directorios y buscando archivos
 readingDirectories: (pt) => {
-    fs.readdir(pt,(err, files) =>{
-    if(err){
-      return error;
-    }else{
-      console.log(files); 
-  }
-})
+  fs.readdir(pt, (err, files) => { 
+    if (err) 
+      return err ; 
+    else { 
+      console.log("\nArchivos del directorio:"); 
+      files.forEach(file => { 
+        mdlinks.readingMdFile(path.resolve(file));
+      }) 
+    } 
+    arrayDeArchivos = files;
+    console.log(arrayDeArchivos);
+  }) 
 }
 }
-
 /*  export function takingThePath(ruta){
    console.log(path.isAbsolute(ruta), ruta )
     return new Promise((resolve, reject) => {

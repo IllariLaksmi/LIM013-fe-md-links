@@ -26,15 +26,11 @@ describe('verifyPath', () => {
   });
   it('should tell if it is a file', () => {
     const route = "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md";
-    expect( mdlinks.verifyPath(route)).toBe('es un archivo');
+    expect( mdlinks.verifyPath(route)).toBe('file');
   });
   it('should tell if it is a directory', () => {
     const dirRoute = "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\b";
-    expect( mdlinks.verifyPath(dirRoute)).toBe('es un directorio')
-  })
-  it('should tell if it is not a readable file', () => {
-    const weirdRoute ="www.google.com";
-    expect( mdlinks.verifyPath(weirdRoute)).toThrow(ENOENT);
+    expect( mdlinks.verifyPath(dirRoute)).toBe('directory')
   })
 });
 //Test de verificación si es un archivo markdown
@@ -44,11 +40,11 @@ describe('isItMarkdown', () => {
   });
   it('should tell if it is markdown', () => {
     const route = "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md";
-    expect( mdlinks.isItMarkdown(route)).toBe('es un archivo md');
+    expect( mdlinks.isItMarkdown(route)).toBe(true);
   });
   it('should tell if it is not markdown', () => {
     const route = "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\b";
-    expect( mdlinks.isItMarkdown(route)).toBe('no es un archivo md')
+    expect( mdlinks.isItMarkdown(route)).toBe(false);
   });
 });
 //Test de lectura de archivos
