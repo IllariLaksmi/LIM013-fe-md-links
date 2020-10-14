@@ -4,7 +4,7 @@ import {mdlinks} from '../src/index.js'
 const path = require('path');
 /* const mdlinks = require('../');  */
 //Test de verificación de ruta
-describe.skip('takingThePath', () => {
+describe('takingThePath', () => {
   it('should be a function', () => {
     expect(typeof mdlinks.takingThePath).toBe('function');
 });
@@ -20,7 +20,7 @@ describe.skip('takingThePath', () => {
 
 });
 //Test de verificación si es un archivo o directorio
-describe.skip('verifyPath', () => {
+describe('verifyPath', () => {
   it('should be a function', () => {
     expect(typeof mdlinks.verifyPath).toBe('function');
   });
@@ -34,7 +34,7 @@ describe.skip('verifyPath', () => {
   })
 });
 //Test de verificación si es un archivo markdown
-describe.skip('isItMarkdown', () => {
+describe('isItMarkdown', () => {
   it('should be a function', () => {
     expect(typeof mdlinks.isItMarkdown).toBe('function');
   });
@@ -52,20 +52,15 @@ describe('readingMdFile', () => {
   it('should be a function', () => {
     expect(typeof mdlinks.readingMdFile).toBe('function');
   });
-  it('should return href, textContent and file', async () => {
+  it('should return href, textContent and file', done => {
     const route = "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md";
      const links = [
-      'https://nodeca.github.io/pica/demo/ pica C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md',
-      'https://github.com/nodeca/babelfish/ babelfish C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md'
+      "href: https://nodeca.github.io/pica/demo/ name: pica path: C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md",        
+      "href: https://github.com/nodeca/babelfish/ name: babelfish path: C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md",
     ];
-     await console.log(mdlinks.readingMdFile(route));
-    mdlinks.readingMdFile(route).then(result => expect(result[0]).toEqual(links[0]))
-/*   expect( mdlinks.readingMdFile(route)).toBe(result); */
+    expect( mdlinks.readingMdFile(route)).toStrictEqual(links); 
+    done();
   });
-  it('should return error with a wrong path', () => {
-    const route = 'www.google.com';
-    expect(mdlinks.readingMdFile(route)).toBe(error);
-  })
 });
 describe.skip('readingDirectories', () => {
   it('should be a function', () => {

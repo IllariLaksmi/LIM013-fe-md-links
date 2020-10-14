@@ -39,34 +39,19 @@ isItMarkdown: (pt)=>{
     }
   },
 //Leer archivos markdown
- readingMdFile: (pt) => {
-    fs.readFile(pt, "utf-8", (err, data) =>{
-    if(err){
-      return error;
-    } else{
-      let html1 = marked(data);
-      const dom = new JSDOM(html1);
-      let links = dom.window.document.querySelectorAll('a');
-      let arrayDeUrls = Array.from(links)
-                        .map(element => "href: "+element.href + " name: " + element.textContent + " path: "+ pt);
-      console.log(arrayDeUrls);
-    }
-  })
-},
+ readingMdFile:(pt) =>{
+  let info =fs.readFileSync(pt, {encoding:'utf8', flag:'r'}) 
+  let html1 = marked(info);
+  const dom = new JSDOM(html1);
+  let links = dom.window.document.querySelectorAll('a');
+  let arrayDeUrls = Array.from(links).map(element => 
+  "href: "+element.href + " name: " + element.textContent + " path: "+ pt)
+  return arrayDeUrls;
+}
+,
 //Leyendo directorios y buscando archivos
 readingDirectories: (pt) => {
-  fs.readdir(pt, (err, files) => { 
-    if (err) 
-      return err ; 
-    else { 
-      console.log("\nArchivos del directorio:"); 
-      files.forEach(file => { 
-        mdlinks.readingMdFile(path.resolve(file));
-      }) 
-    } 
-    arrayDeArchivos = files;
-    console.log(arrayDeArchivos);
-  }) 
+
 }
 }
 /*  export function takingThePath(ruta){
