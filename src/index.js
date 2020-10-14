@@ -8,8 +8,6 @@ const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const marked = require("marked");
-let arrayDeArchivos = {}
-
 export const mdlinks = {
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
 takingThePath: (pt)=>{
@@ -40,7 +38,7 @@ isItMarkdown: (pt)=>{
   const dom = new JSDOM(html1);
   let links = dom.window.document.querySelectorAll('a');
   let arrayDeUrls = Array.from(links).map(element => 
-  "href: "+element.href + " name: " + element.textContent + " path: "+ pt)
+  "href: "+element.href + " name: " + element.textContent + " path: "+ pt);
   return arrayDeUrls;
 }
 ,
