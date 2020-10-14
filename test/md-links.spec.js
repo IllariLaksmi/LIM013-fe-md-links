@@ -62,15 +62,14 @@ describe('readingMdFile', () => {
     done();
   });
 });
-describe.skip('readingDirectories', () => {
+describe('readingDirectories', () => {
   it('should be a function', () => {
     expect(typeof mdlinks.readingDirectories).toBe('function');
   });
-  it('should return error when it is not data', () => {
-    const route = 'www.google.com';
-    expect(mdlinks.readingDirectories(route)).toBe(error)
-  });
-  it ('should return the files with href, textContent and file', () => {
+  it('should return the a file when the directory has only one file', () => {
+    const route = "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a";
+    expect(mdlinks.readingDirectories(route)).toStrictEqual([]);
+
 
   })
 })

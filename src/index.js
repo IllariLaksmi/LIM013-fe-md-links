@@ -11,7 +11,7 @@ const marked = require("marked");
 export const mdlinks = {
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
 takingThePath: (pt)=>{
-  return path.resolve(__dirname, pt);
+  return path.resolve(pt);
 },
 //Verificando si es un archivo o directorio
 verifyPath: (pt)=>{
