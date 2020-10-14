@@ -8,7 +8,7 @@ const { program } = require('commander');
 program.version('0.0.1');
 
 let route = process.argv[2]; 
-console.log(mdlinks.readingMdFile(route))
+console.log(mdlinks.readingDirectories(route))
 /* function mdlinksIntegrated(pt){
 return new Promise((resolve, reject) => {
         let fixedPath = mdlinks.takingThePath(pt);

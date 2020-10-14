@@ -13,12 +13,7 @@ let arrayDeArchivos = {}
 export const mdlinks = {
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
 takingThePath: (pt)=>{
-  if(path.isAbsolute(pt) == true){
-    return pt ;
-  }else if(path.isAbsolute(pt) == false){
-    let ruta1 = path.resolve(pt);
-    return ruta1 ;
-  }
+  return path.resolve(__dirname, pt);
 },
 //Verificando si es un archivo o directorio
 verifyPath: (pt)=>{
@@ -51,18 +46,20 @@ isItMarkdown: (pt)=>{
 ,
 //Leyendo directorios y buscando archivos
 readingDirectories: (pt) => {
-
+  let filenames = fs.readdirSync(pt);
+  let listOfAllFiles = [];
+  filenames.forEach( file => {
+    const pth = path.resolve(pt,file);
+    let response =  mdlinks.verifyPath(pth);
+    if(response == "file"){
+      listOfAllFiles.push(file);
+      console.log(file);
+    }else if(response == "directory"){
+     let direcFileNames = mdlinks.readingDirectories(pth);
+     console.log(direcFileNames);
+      listOfAllFiles.concat(direcFileNames);
+    }
+  })
+  return listOfAllFiles ;
 }
 }
-/*  export function takingThePath(ruta){
-   console.log(path.isAbsolute(ruta), ruta )
-    return new Promise((resolve, reject) => {
-       if(path.isAbsolute(ruta) == true){
-         const messageIsAbsolute = "Es absoluto";
-        resolve( messageIsAbsolute );
-       }else if(path.isAbsolute(ruta) == false){
-         const messageIsRelative = new Error("Es relativo");
-         reject(console.log(messageIsRelative));
-       }
-    })
- } */
