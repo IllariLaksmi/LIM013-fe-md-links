@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1602707220899" clover="3.2.0">
-  <project timestamp="1602707220899" name="All files">
-    <metrics statements="37" coveredstatements="37" conditionals="10" coveredconditionals="8" methods="7" coveredmethods="7" elements="54" coveredelements="52" complexity="0" loc="37" ncloc="37" packages="1" files="1" classes="1"/>
+<coverage generated="1602973058494" clover="3.2.0">
+  <project timestamp="1602973058495" name="All files">
+    <metrics statements="35" coveredstatements="35" conditionals="10" coveredconditionals="8" methods="7" coveredmethods="7" elements="52" coveredelements="50" complexity="0" loc="35" ncloc="35" packages="1" files="1" classes="1"/>
     <file name="index.js" path="C:\Users\51981\Documents\LIM013-fe-md-links\src\index.js">
-      <metrics statements="37" coveredstatements="37" conditionals="10" coveredconditionals="8" methods="7" coveredmethods="7"/>
+      <metrics statements="35" coveredstatements="35" conditionals="10" coveredconditionals="8" methods="7" coveredmethods="7"/>
       <line num="3" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
       <line num="6" count="1" type="stmt"/>
@@ -35,12 +35,10 @@
       <line num="51" count="2" type="stmt"/>
       <line num="52" count="2" type="cond" truecount="2" falsecount="0"/>
       <line num="53" count="1" type="stmt"/>
-      <line num="54" count="1" type="stmt"/>
-      <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="54" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="55" count="1" type="stmt"/>
       <line num="56" count="1" type="stmt"/>
-      <line num="57" count="1" type="stmt"/>
-      <line num="58" count="1" type="stmt"/>
-      <line num="61" count="2" type="stmt"/>
+      <line num="59" count="2" type="stmt"/>
     </file>
   </project>
 </coverage>

@@ -68,6 +68,6 @@ describe('readingDirectories', () => {
   });
   it('should return the a file when the directory has only one file', () => {
     const route = "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a";
-    expect(mdlinks.readingDirectories(route)).toStrictEqual([]);
+    expect(mdlinks.readingDirectories(route)).toStrictEqual([ 'prueba2.md' ]);
   })
 })
