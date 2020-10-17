@@ -44,20 +44,18 @@ isItMarkdown: (pt)=>{
 ,
 //Leyendo directorios y buscando archivos
 readingDirectories: (pt) => {
-  let filenames = fs.readdirSync(pt);
+  let filenames = fs.readdirSync(pt, "utf-8");
   let listOfAllFiles = [];
   filenames.forEach( file => {
     const pth = path.resolve(pt,file);
     let response =  mdlinks.verifyPath(pth);
     if(response == "file"){
-      listOfAllFiles.push(file);
-      console.log(file);
+     listOfAllFiles.push(file);
     }else if(response == "directory"){
      let direcFileNames = mdlinks.readingDirectories(pth);
-     console.log(direcFileNames);
-      listOfAllFiles.concat(direcFileNames);
+    listOfAllFiles = listOfAllFiles.concat(direcFileNames);
     }
   })
-  return listOfAllFiles ;
+  return listOfAllFiles
 }
 }
