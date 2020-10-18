@@ -77,9 +77,9 @@ describe('option --stats', () => {
     expect(typeof stats).toBe('function');
   });
   it('should return total an unique links', () => {
-    const route ="C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a";
+    const route ="C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md";
     const routeCorrected = mdlinks.readingMdFile(route);
     const response = "Total: 4\nUnique: 2";
-    expect(stats(route)).toStrictEqual(routeCorrected);
+    expect(stats(routeCorrected)).toStrictEqual(response);
   }) 
 })
