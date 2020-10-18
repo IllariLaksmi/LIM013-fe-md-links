@@ -37,9 +37,13 @@ isItMarkdown: (pt)=>{
   let html1 = marked(info);
   const dom = new JSDOM(html1);
   let links = dom.window.document.querySelectorAll('a');
-  let arrayDeUrls = Array.from(links).map(element => 
+  let urls = Array.from(links).map(element => 
   element.href);
-  return arrayDeUrls;
+  let names = Array.from(links).map(element => 
+    element.href);
+  let paths = Array.from(links).map(element => 
+      element.href);
+  return urls ;
 }
 ,
 //Leyendo directorios y buscando archivos

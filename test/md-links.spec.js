@@ -1,6 +1,7 @@
 import { error } from 'console';
 import { ENOENT } from 'constants';
 import {mdlinks} from '../src/index.js'
+import {stats} from '../src/stats.js'
 const path = require('path');
 /* const mdlinks = require('../');  */
 //Test de verificación de ruta
@@ -48,7 +49,7 @@ describe('isItMarkdown', () => {
   });
 });
 //Test de lectura de archivos
-describe('readingMdFile', () => {
+describe.skip('readingMdFile', () => {
   it('should be a function', () => {
     expect(typeof mdlinks.readingMdFile).toBe('function');
   });
@@ -68,6 +69,17 @@ describe('readingDirectories', () => {
   });
   it('should return the a file when the directory has only one file', () => {
     const route = "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a";
-    expect(mdlinks.readingDirectories(route)).toStrictEqual([ 'prueba2.md' ]);
+    expect(mdlinks.readingDirectories(route)).toStrictEqual([ 'prueba2.md', 'prueba3.md' ]);
   })
+})
+describe('option --stats', () => {
+  it('should be a function', () => {
+    expect(typeof stats).toBe('function');
+  });
+  it('should return total an unique links', () => {
+    const route ="C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a";
+    const routeCorrected = mdlinks.readingMdFile(route);
+    const response = "Total: 4\nUnique: 2";
+    expect(stats(route)).toStrictEqual(routeCorrected);
+  }) 
 })

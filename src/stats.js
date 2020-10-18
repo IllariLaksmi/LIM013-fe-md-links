@@ -4,8 +4,7 @@ export let stats = (links) => {
     const total = "Total: " + links.length;
     //Contando cuantos son únicos
     const comparingLinks = links.filter(function(link, index, array){
-     return array.indexOf(link) === index;
-});
+     return array.indexOf(link) === index});
     const uniqueLinks = "Unique: " + comparingLinks.length;
     const info = total + "\n" + uniqueLinks;
     return info;
