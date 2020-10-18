@@ -38,7 +38,7 @@ isItMarkdown: (pt)=>{
   const dom = new JSDOM(html1);
   let links = dom.window.document.querySelectorAll('a');
   let arrayDeUrls = Array.from(links).map(element => 
-  "href: "+element.href + " name: " + element.textContent + " path: "+ pt);
+  element.href);
   return arrayDeUrls;
 }
 ,

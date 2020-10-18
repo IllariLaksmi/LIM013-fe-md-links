@@ -1,4 +1,5 @@
 import {mdlinks} from './index.js'
+import {validate} from './validate.js'
 const fs = require('fs');
 const path = require('path');
 const jsdom = require("jsdom");
@@ -8,4 +9,5 @@ const { program } = require('commander');
 program.version('0.0.1');
 
 let route = process.argv[2]; 
-console.log(mdlinks.readingDirectories(mdlinks.takingThePath(route)));
+let links = mdlinks.readingMdFile(route)
+validate(links);
