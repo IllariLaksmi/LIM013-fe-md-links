@@ -63,6 +63,7 @@ describe.skip('readingMdFile', () => {
     done();
   });
 });
+//Test directorios
 describe('readingDirectories', () => {
   it('should be a function', () => {
     expect(typeof mdlinks.readingDirectories).toBe('function');
@@ -72,6 +73,7 @@ describe('readingDirectories', () => {
     expect(mdlinks.readingDirectories(route)).toStrictEqual([ 'prueba2.md', 'prueba3.md' ]);
   })
 })
+//Test opion stats
 describe('option --stats', () => {
   it('should be a function', () => {
     expect(typeof stats).toBe('function');
