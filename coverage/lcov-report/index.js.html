@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">82.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>33/40</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/10</span>
+                <span class='fraction'>5/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">82.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>33/40</span>
             </div>
         
             
@@ -122,7 +122,8 @@
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -133,16 +134,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,19 +174,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { error } from 'console';
@@ -197,7 +199,8 @@ const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const marked = require("marked");
-export const mdlinks = {
+export const mdlinksMethods = {
+validatePath: <span class="fstat-no" title="function not covered" >(r</span>oute) =&gt; <span class="cstat-no" title="statement not covered" >fs.existsSync(route),</span>
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
 takingThePath: (pt)=&gt;{
   return path.resolve(pt);
@@ -229,7 +232,7 @@ isItMarkdown: (pt)=&gt;{
   let urls = Array.from(links).map(element =&gt; 
   element.href);
   let names = Array.from(links).map(element =&gt; 
-    element.href);
+    element.textContent);
   let paths = Array.from(links).map(element =&gt; 
       element.href);
   return urls ;
@@ -242,14 +245,14 @@ readingDirectories: (pt) =&gt; {
   filenames.forEach( file =&gt; {
     const pth = path.resolve(pt,file);
     let response =  mdlinks.verifyPath(pth);
-    if(response == "file"){
-     listOfAllFiles.push(file);
-    }else <span class="missing-if-branch" title="else path not taken" >E</span>if(response == "directory"){
-     let direcFileNames = mdlinks.readingDirectories(pth);
-    listOfAllFiles = listOfAllFiles.concat(direcFileNames);
+<span class="cstat-no" title="statement not covered" >    if(response == "file"){</span>
+<span class="cstat-no" title="statement not covered" >     listOfAllFiles.push(file);</span>
+    }else <span class="cstat-no" title="statement not covered" >if(response == "directory"){</span>
+     let direcFileNames = <span class="cstat-no" title="statement not covered" >mdlinks.readingDirectories(pth);</span>
+<span class="cstat-no" title="statement not covered" >    listOfAllFiles = listOfAllFiles.concat(direcFileNames);</span>
     }
   })
-  return listOfAllFiles
+<span class="cstat-no" title="statement not covered" >  return listOfAllFiles</span>
 }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -259,7 +262,7 @@ readingDirectories: (pt) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Oct 17 2020 20:53:23 GMT-0500 (GMT-05:00)
+                at Mon Oct 19 2020 13:26:58 GMT-0500 (GMT-05:00)
             </div>
         </div>
         <script src="prettify.js"></script>

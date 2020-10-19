@@ -6,9 +6,9 @@ __Advertisement :)__
   resize in browser.
 - __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
   i18n with plurals support and easy syntax.
-- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
+- __[babelfish](https://github.com/nodeca/babelfis/)__ - developer friendly
   i18n with plurals support and easy syntax.
-  - __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
+  - __[babelfish](https://github.com/nodeca/babexxxxxx/)__ - developer friendly
   i18n with plurals support and easy syntax.
 You will like those projects!
 

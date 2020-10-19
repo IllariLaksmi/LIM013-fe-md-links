@@ -7,5 +7,6 @@ export let stats = (links) => {
      return array.indexOf(link) === index});
     const uniqueLinks = "Unique: " + comparingLinks.length;
     const info = total + "\n" + uniqueLinks;
+    console.log(info);
     return info;
 }

@@ -8,7 +8,8 @@ const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const marked = require("marked");
-export const mdlinks = {
+export const mdlinksMethods = {
+validatePath: (route) => fs.existsSync(route),
 //Verificando si el path es absoluto, si es relativo se cambia a absoluto
 takingThePath: (pt)=>{
   return path.resolve(pt);
@@ -40,7 +41,7 @@ isItMarkdown: (pt)=>{
   let urls = Array.from(links).map(element => 
   element.href);
   let names = Array.from(links).map(element => 
-    element.href);
+    element.textContent);
   let paths = Array.from(links).map(element => 
       element.href);
   return urls ;
