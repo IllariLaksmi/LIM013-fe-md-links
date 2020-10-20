@@ -10,13 +10,12 @@ export  const mdlinks = (path, options) => {
                         if(options == undefined){
                             return console.log(mdlinksMethods.readingMdFile(path));
                         }else if(options.validatex == true){
-                            let links = mdlinksMethods.bringingLinksUrls(path);
-                            return validate(links);
+                            return validate(path);
                         }else if(options.statsx == true){
                             let links = mdlinksMethods.bringingLinksUrls(path);
                             return stats(links);
                         }else if(options.statsValidatex == true){
-                            let links = mdlinksMethods.readingMdFile(path);
+                            let links = mdlinksMethods.bringingLinksUrls(path);
                             return statsValidate(links);
                         }
                     }
