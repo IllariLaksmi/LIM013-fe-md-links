@@ -4,7 +4,7 @@
   "description": "Verifica los links de archivos markdown y reporta si estan operativos ",
   "main": "index.js",
   "bin": {
-    "md-links": "lib/modules.js"
+    "md-links": "lib/cli.js"
   },
   "engines": {
     "node": "*"
