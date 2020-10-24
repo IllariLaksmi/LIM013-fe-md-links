@@ -1,12 +1,11 @@
-//Brindando estadísticas sencillas de los links
-export let stats = (links) => {
-    //El total de links
-    const total = "Total: " + links.length;
-    //Contando cuantos son únicos
-    const comparingLinks = Array.from(links).filter(function(link, index, array){
-     return array.indexOf(link) === index});
-    const uniqueLinks = "Unique: " + comparingLinks.length;
-    const info = total + "\n" + uniqueLinks;
-    console.log(info);
-    return info;
-}
+// Brindando estadísticas sencillas de los links
+export const stats = (links) => {
+  // El total de links
+  const total = `Total: ${links.length}`;
+  // Contando cuantos son únicos
+  const linksComp = Array.from(links).filter((link, index, array) => array.indexOf(link) === index);
+  const uniqueLinks = `Unique: ${linksComp.length}`;
+  const info = `${total}\n${uniqueLinks}`;
+  console.log(info);
+  return info;
+};
