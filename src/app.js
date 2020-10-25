@@ -27,7 +27,8 @@ export const mdlinks = (path, options) => {
           const links = mdlinksMethods.bringingLinksUrlsDirectory(path);
           return validate(links);
         } if (options.statsx === true) {
-          const links = mdlinksMethods.bringingLinksUrlsDirectory(path);
+          let links = mdlinksMethods.bringingLinksUrlsDirectory(path);
+          links = links[0].concat(links[1])
           return stats(links);
         }
       }

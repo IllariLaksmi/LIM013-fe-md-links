@@ -86,7 +86,6 @@ export const mdlinksMethods = {
         listOfAllFiles = listOfAllFiles.concat(direcFileNames);
       }
     })
-    console.log(listOfAllFiles);
     return listOfAllFiles;
   }
 
