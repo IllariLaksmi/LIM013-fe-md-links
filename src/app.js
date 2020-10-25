@@ -28,7 +28,6 @@ export const mdlinks = (path, options) => {
           return validate(links);
         } if (options.statsx === true) {
           let links = mdlinksMethods.bringingLinksUrlsDirectory(path);
-          links = links[0].concat(links[1])
           return stats(links);
         }
       }

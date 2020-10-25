@@ -79,8 +79,8 @@ export const mdlinksMethods = {
       const pth = path.resolve(pt, file);
       const response = mdlinksMethods.verifyPath(pth) ;
       if ((response === 'file') && (mdlinksMethods.isItMarkdown(pth)=== true)) {
-        let linkFiles = mdlinksMethods.bringingLinksUrls(pth);
-        listOfAllFiles.push(linkFiles);
+        let linkFiles = mdlinksMethods.bringingLinksUrls(pth)
+        linkFiles.forEach(link => listOfAllFiles.push(link))
       } else if (response === 'directory') {
         const direcFileNames = mdlinksMethods.bringingLinksUrlsDirectory(pth);
         listOfAllFiles = listOfAllFiles.concat(direcFileNames);
