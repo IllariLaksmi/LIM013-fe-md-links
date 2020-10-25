@@ -61,14 +61,33 @@ export const mdlinksMethods = {
     let listOfAllFiles = [];
     filenames.forEach((file) => {
       const pth = path.resolve(pt, file);
-      const response = mdlinksMethods.verifyPath(pth);
-      if (response === 'file') {
-        listOfAllFiles.push(file);
+      const response = mdlinksMethods.verifyPath(pth) ;
+      if ((response === 'file') && (mdlinksMethods.isItMarkdown(pth)=== true)) {
+        let linkFiles = mdlinksMethods.readingMdFile(pth);
+        listOfAllFiles.push(linkFiles);
       } else if (response === 'directory') {
         const direcFileNames = mdlinksMethods.readingDirectories(pth);
         listOfAllFiles = listOfAllFiles.concat(direcFileNames);
       }
     });
-    return listOfAllFiles;
+    return listOfAllFiles.join('');
   },
-};
+  bringingLinksUrlsDirectory: (pt) => {
+    const filenames = fs.readdirSync(pt, 'utf-8');
+    let listOfAllFiles = [];
+    filenames.forEach((file) => {
+      const pth = path.resolve(pt, file);
+      const response = mdlinksMethods.verifyPath(pth) ;
+      if ((response === 'file') && (mdlinksMethods.isItMarkdown(pth)=== true)) {
+        let linkFiles = mdlinksMethods.bringingLinksUrls(pth);
+        listOfAllFiles.push(linkFiles);
+      } else if (response === 'directory') {
+        const direcFileNames = mdlinksMethods.bringingLinksUrlsDirectory(pth);
+        listOfAllFiles = listOfAllFiles.concat(direcFileNames);
+      }
+    })
+    console.log(listOfAllFiles);
+    return listOfAllFiles;
+  }
+
+}

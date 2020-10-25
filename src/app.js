@@ -11,7 +11,7 @@ export const mdlinks = (path, options) => {
           if (options === undefined) {
             return console.log(mdlinksMethods.readingMdFile(path));
           } if (options.validatex === true) {
-            return console.log(validate(path));
+            return validate(path);
           } if (options.statsx === true) {
             const links = mdlinksMethods.bringingLinksUrls(path);
             return stats(links);
@@ -22,12 +22,12 @@ export const mdlinks = (path, options) => {
         }
       } else if (mdlinksMethods.verifyPath(path) === 'directory') {
         if (options === undefined) {
-          return mdlinksMethods.readingDirectories(path);
+          return console.log(mdlinksMethods.readingDirectories(path));
         } if (options.validatex === true) {
-          const links = mdlinksMethods.readingDirectories(path);
+          const links = mdlinksMethods.bringingLinksUrlsDirectory(path);
           return validate(links);
         } if (options.statsx === true) {
-          const links = mdlinksMethods.readingDirectories(path);
+          const links = mdlinksMethods.bringingLinksUrlsDirectory(path);
           return stats(links);
         }
       }
