@@ -28,6 +28,9 @@ export const mdlinks = (path, options) => {
         } if (options.statsx === true) {
           const links = mdlinksMethods.bringingLinksUrlsDirectory(path);
           return stats(links);
+        } if(options.statsValidatex === true) {
+          const links = mdlinksMethods.bringingLinksUrlsDirectory(path);
+          return statsValidate(links);
         }
       }
     }
