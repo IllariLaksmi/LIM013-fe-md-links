@@ -2,7 +2,7 @@ import { mdlinksMethods } from './index.js';
 import { validate } from './validate.js';
 import { stats } from './stats.js';
 import { statsValidate } from './statsValidate.js';
-
+import { validateDirectory } from './validateDirectory.js';
 export const mdlinks = (path, options) => {
   if (mdlinksMethods.validatePath(path)) {
     if (mdlinksMethods.takingThePath(path)) {
@@ -24,10 +24,9 @@ export const mdlinks = (path, options) => {
         if (options === undefined) {
           return console.log(mdlinksMethods.readingDirectories(path));
         } if (options.validatex === true) {
-          const links = mdlinksMethods.bringingLinksUrlsDirectory(path);
-          return validate(links);
+          return validateDirectory(path);
         } if (options.statsx === true) {
-          let links = mdlinksMethods.bringingLinksUrlsDirectory(path);
+          const links = mdlinksMethods.bringingLinksUrlsDirectory(path);
           return stats(links);
         }
       }
