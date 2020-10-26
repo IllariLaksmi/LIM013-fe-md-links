@@ -6,6 +6,5 @@ export const stats = (links) => {
   const linksComp = Array.from(links).filter((link, index, array) => array.indexOf(link) === index);
   const uniqueLinks = `Unique: ${linksComp.length}`;
   const info = `${total}\n${uniqueLinks}`;
-  console.log(info);
   return info;
 };

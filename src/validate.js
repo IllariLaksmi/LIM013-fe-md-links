@@ -4,7 +4,6 @@ const marked = require('marked');
 const { JSDOM } = jsdom;
 const fetch = require('node-fetch');
 const fs = require('fs');
-const path = require('path');
 // Verificando si los links están rotos
 export const validate = (route) => {
         const info = fs.readFileSync(route, { encoding: 'utf8', flag: 'r' });
