@@ -51,14 +51,9 @@ describe('readingMdFile', () => {
   });
   it('should return href, textContent and file', (done) => {
     const route = 'C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md';
-    let links = [
-      "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md https://nodeca.github.io/pica/demo/ pica",
-      "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md https://github.com/nodeca/babelfish/ babelfish",
-      "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md https://github.com/nodeca/babelfis/ babelfish",
-      "C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md https://github.com/nodeca/babexxxxxx/ babelfish"
-    ];
-    links =links.join(' ');
-    expect(mdlinksMethods.readingMdFile(route)).toEqual(links);
+    let links = 
+    "\nC:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md https://nodeca.github.io/pica/demo/ pica";
+    expect(mdlinksMethods.readingMdFile(route)).toStrictEqual(links);
     done();
   });
 });
@@ -69,10 +64,7 @@ describe('readingDirectories', () => {
   });
   it('should return the a file when the directory has only one file', () => {
     const route = 'C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a';
-    const result = ['C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\b\\prueba2.md https://nodeca.github.io/pica/demo/ pica',
-    'C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\b\\prueba2.md https://github.com/nodeca/babelfish/ babelfish',
-    'C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\prueba3.md https://nodeca.github.io/pica/demo/ pica',
-    'C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\prueba3.md https://github.com/nodeca/babelfis/ babelfish']
+    const result = 'C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\b\\prueba2.md https://nodeca.github.io/pica/demo/ pica\nC:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\b\\prueba2.md https://github.com/nodeca/babelfish/ babelfish\nC:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\prueba3.md https://nodeca.github.io/pica/demo/ pica\nC:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\a\\prueba3.md https://github.com/nodeca/babelfis/ babelfish'
     expect(mdlinksMethods.readingDirectories(route)).toEqual(result);
   });
 });
@@ -84,7 +76,7 @@ describe('option --stats', () => {
   it('should return total an unique links', () => {
     const route = 'C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md';
     const routeCorrected = mdlinksMethods.bringingLinksUrls(route);
-    const response = 'Total: 4\nUnique: 4';
+    const response = 'Total: 1\nUnique: 1';
     expect(stats(routeCorrected)).toStrictEqual(response);
   });
 });
@@ -96,5 +88,5 @@ describe('bringinglinksUrls', () => {
 it('should return links', () => {
   const route = 'C:\\Users\\51981\\Documents\\LIM013-fe-md-links\\pruebas\\prueba1.md';
   const response = ['https://nodeca.github.io/pica/demo/'];
-  expect(mdlinksMethods.bringingLinksUrls(route)).toBe(response)
+  expect(mdlinksMethods.bringingLinksUrls(route)).toStrictEqual(response)
 })
