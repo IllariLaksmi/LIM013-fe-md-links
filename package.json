@@ -2,7 +2,7 @@
   "name": "md-links",
   "version": "0.0.1",
   "description": "Verifica los links de archivos markdown y reporta si estan operativos ",
-  "main": "index.js",
+  "main": "app.js",
   "bin": {
     "md-links": "lib/cli.js"
   },
@@ -27,7 +27,7 @@
     "markdown"
   ],
   "author": "Illari Laksmi Alvarez-Gil Escobar",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/IllariLaksmi/LIM013-fe-md-links/issues"
   },
