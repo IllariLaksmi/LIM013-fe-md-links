@@ -4,11 +4,9 @@ import { stats } from './stats.js';
 import { statsValidate } from './statsValidate.js';
 import { validateDirectory } from './validateDirectory.js';
 export const mdlinks = (path, options) => {
-  if (mdlinksMethods.validatePath(path)) {
-    if (mdlinksMethods.takingThePath(path)) {
-      if (mdlinksMethods.verifyPath(path) === 'file') {
-        if (mdlinksMethods.isItMarkdown) {
-          if (options === undefined) {
+  if ((mdlinksMethods.validatePath(path))&&(mdlinksMethods.takingThePath(path))) {
+      if ((mdlinksMethods.verifyPath(path) === 'file')&&((mdlinksMethods.isItMarkdown(path)))) {
+           if (options === undefined) {
             return console.log(mdlinksMethods.readingMdFile(path));
           } if (options.validatex === true) {
             return validate(path);
@@ -19,7 +17,6 @@ export const mdlinks = (path, options) => {
             const links = mdlinksMethods.bringingLinksUrls(path);
             return statsValidate(links);
           }
-        }
       } else if (mdlinksMethods.verifyPath(path) === 'directory') {
         if (options === undefined) {
           return console.log(mdlinksMethods.readingDirectories(path));
@@ -34,5 +31,4 @@ export const mdlinks = (path, options) => {
         }
       }
     }
-  }
 };
